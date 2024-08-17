@@ -1,0 +1,29 @@
+<div>
+
+  <h1>Company List</h1>
+
+  <div class="buttons">
+
+    <button (click)="addCompany()" class="primary-button">New company</button>
+  </div>
+  <p *ngIf="companies.length == 0">Loading...</p>
+
+  <table *ngIf="companies.length > 0">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Code</th>
+        <th>Current share price</th>
+        <th>Created date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let company of companies">
+        <td>{{ company.companyName }}</td>
+        <td>{{ company.code }}</td>
+        <td>{{ company.sharePrice | number: '1.0-5'}}</td>
+        <td>{{ company.createdDate | date: 'dd-MMM-yyy'}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

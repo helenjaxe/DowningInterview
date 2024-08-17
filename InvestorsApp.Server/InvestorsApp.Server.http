@@ -1,0 +1,6 @@
+@InvestorsApp.Server_HostAddress = http://localhost:5145
+
+GET {{InvestorsApp.Server_HostAddress}}/api/company/PF
+Accept: application/json
+
+###

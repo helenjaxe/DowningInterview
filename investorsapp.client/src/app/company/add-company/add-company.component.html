@@ -1,0 +1,40 @@
+<div>
+
+  <form [formGroup]="companyForm" (ngSubmit)="addCompany()">
+
+    <h1>Add Company</h1>
+
+    <p>Required fields are followed by <span aria-label="required">*</span>.</p>
+
+    <div class="form">
+      <label for="companyName">Company name: <span aria-label="required">*</span></label>
+
+      <span>
+        <input id="companyName" formControlName="companyName" />
+        <span class="error" *ngIf="companyName.invalid && companyName.touched">Enter a company name up to 100 characters</span>
+      </span>
+
+      <label for="code">Company code: <span aria-label="required">*</span></label>
+      <span>
+        <input id="code" formControlName="code" class="code" (blur)="convertCodeToUppercase()" />
+        <span class="error" *ngIf="!code.errors?.['codeexists'] && code.invalid && code.touched">Enter an alphanumeric company code up to 10 characters</span>
+        <span class="error" *ngIf="code.errors?.['codeexists'] && code.touched">Company code must be unique</span>
+      </span>
+
+      <label for="price"> Share price </label>
+      <span>
+        <input id="price" type="number" formControlName="sharePrice" />
+        <span class="error" *ngIf="sharePrice.invalid && sharePrice.touched">Enter a maximum of 5 decimal places</span>
+      </span>
+    </div>
+
+    <span class="error">{{error}}</span>
+
+    <div class="buttons">
+      <button type="button" class="secondary-button" (click)="cancel()">Cancel</button>
+      <button type="submit" [disabled]="!companyForm.valid" class="primary-button">Save</button>
+    </div>
+
+  </form>
+</div>
+
